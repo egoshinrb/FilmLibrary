@@ -14,11 +14,15 @@ import java.time.LocalDate;
 @ToString
 @SequenceGenerator(name = "default_generator", sequenceName = "order_sequence", allocationSize = 1)
 public class Order extends GenericModel {
-    @Column(name = "user_id", nullable = false) // TODO добавить констрейнты
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false,
+          foreignKey = @ForeignKey(name = "FK_ORDER_USER_ID"))
+    private User user;
 
-    @Column(name = "film_id", nullable = false)
-    private Long filmId;
+    @ManyToOne
+    @JoinColumn(name = "film_id", nullable = false,
+          foreignKey = @ForeignKey(name = "FK_ORDER_FILM_ID"))
+    private Film film;
 
     @Column(name = "rent_date", nullable = false)
     private LocalDate rentDate;

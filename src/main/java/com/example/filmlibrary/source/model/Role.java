@@ -16,7 +16,7 @@ public class Role {
     private Long id;
 
     @Enumerated
-    @Column(name = "title", nullable = false) // TODO добавить уникальность
+    @Column(name = "title", nullable = false, unique = true)
     private RoleTitle title;
 
     @Column(name = "description", nullable = false)
