@@ -1,5 +1,6 @@
 package com.example.filmlibrary.source.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,15 +12,19 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@SequenceGenerator(name = "default_generator", sequenceName = "director_sequence", allocationSize = 1)
-public class Director extends GenericModel {
+@SequenceGenerator(name = "default_generator", sequenceName = "directors_sequence", allocationSize = 1)
+public class Director extends GenericModel{
+
     @Column(name = "directors_fio", nullable = false)
-    private String directors_fio;
+    private String directorsFio;
 
-    @Column(name = "position", nullable = false)
-    private String position;
+    @Column(name = "position")
+    private Double position;
 
-    @ManyToMany(mappedBy = "directors")
-    List<Film> films;
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "films_directors",
+            joinColumns = @JoinColumn(name = "director_id"), foreignKey = @ForeignKey(name = "FK_DIRECTORS_FILMS"),
+            inverseJoinColumns = @JoinColumn(name = "film_id"), inverseForeignKey = @ForeignKey(name = "FK_FILMS_DIRECTORS"))
+    private List<Film> films;
 }

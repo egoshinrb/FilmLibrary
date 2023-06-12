@@ -2,8 +2,7 @@ package com.example.filmlibrary.source.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
@@ -11,25 +10,27 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@SequenceGenerator(name = "default_generator", sequenceName = "order_sequence", allocationSize = 1)
-public class Order extends GenericModel {
+@SequenceGenerator(name = "default_generator", sequenceName = "orders_sequence", allocationSize = 1)
+public class Order extends GenericModel{
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false,
-          foreignKey = @ForeignKey(name = "FK_ORDER_USER_ID"))
+            foreignKey = @ForeignKey(name = "FK_ORDER_INFO_USER"))
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "film_id", nullable = false,
-          foreignKey = @ForeignKey(name = "FK_ORDER_FILM_ID"))
+            foreignKey = @ForeignKey(name = "FK_ORDER_INFO_FILM"))
     private Film film;
 
     @Column(name = "rent_date", nullable = false)
-    private LocalDate rentDate;
+    private LocalDateTime rentDate;
 
     @Column(name = "rent_period", nullable = false)
-    private Byte rentPeriod;
+    private Integer rentPeriod;
 
-    @Column(name = "is_purchase")
-    private Boolean isPurchase;
+    @Column(name = "purchase", nullable = false)
+    private Boolean purchase;
 }
+
+

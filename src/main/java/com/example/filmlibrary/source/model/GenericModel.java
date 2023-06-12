@@ -9,8 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@MappedSuperclass
+@MappedSuperclass //в БД такой таблицы создаваться не будет, только в наследуемых классах
 public abstract class GenericModel {
     @Id
     @Column(name = "id", nullable = false)
@@ -30,5 +29,6 @@ public abstract class GenericModel {
     private String deletedBy;
 
     @Column(name = "is_deleted", columnDefinition = "boolean default false")
-    private Boolean isDeleted;
+    private boolean isDeleted;
+
 }

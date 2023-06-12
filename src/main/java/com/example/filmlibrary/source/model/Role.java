@@ -4,22 +4,19 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated
-    @Column(name = "title", nullable = false, unique = true)
-    private RoleTitle title;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     private String description;
-
 }
+
