@@ -46,12 +46,12 @@ public class User extends GenericModel {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "role_id", nullable = false,
             foreignKey = @ForeignKey(name = "FK_USERS_ROLES"))
     private Role role;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Order> orders;
 
 }
