@@ -1,4 +1,4 @@
-package com.example.filmlibrary.source.controller;
+package com.example.filmlibrary.source.controller.rest;
 
 import com.example.filmlibrary.source.model.User;
 import com.example.filmlibrary.source.repository.UserRepository;

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class DirectorMapper
         extends GenericMapper<Director, DirectorDTO> {
 
-    private FilmRepository filmRepository;
+    private final FilmRepository filmRepository;
 
     public DirectorMapper(ModelMapper modelMapper, FilmRepository filmRepository) {
         super(Director.class, DirectorDTO.class, modelMapper);

@@ -1,11 +1,10 @@
-package com.example.filmlibrary.source.controller;
+package com.example.filmlibrary.source.controller.rest;
 
 import com.example.filmlibrary.source.model.Director;
 import com.example.filmlibrary.source.model.Film;
 import com.example.filmlibrary.source.repository.DirectorRepository;
 import com.example.filmlibrary.source.repository.FilmRepository;
 import com.example.filmlibrary.source.repository.GenericRepository;
-import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -13,8 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.webjars.NotFoundException;
-
-import java.io.Serializable;
 
 //@Hidden // swagger annotation скрыть контроллер
 @RestController

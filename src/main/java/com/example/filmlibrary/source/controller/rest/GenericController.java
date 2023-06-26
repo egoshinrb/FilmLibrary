@@ -1,4 +1,4 @@
-package com.example.filmlibrary.source.controller;
+package com.example.filmlibrary.source.controller.rest;
 
 import com.example.filmlibrary.source.model.Director;
 import com.example.filmlibrary.source.model.GenericModel;
