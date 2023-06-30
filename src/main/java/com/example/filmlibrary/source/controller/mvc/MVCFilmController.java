@@ -1,5 +1,6 @@
 package com.example.filmlibrary.source.controller.mvc;
 
+import com.example.filmlibrary.source.DTO.DirectorDTO;
 import com.example.filmlibrary.source.DTO.FilmDTO;
 import com.example.filmlibrary.source.service.DirectorService;
 import com.example.filmlibrary.source.service.FilmService;
@@ -47,10 +48,18 @@ public class MVCFilmController {
         return "films/viewAllFilms";
     }
 
+//    @GetMapping("/add")
+//    public String create() {
+//        return "films/addFilm";
+//    }
+
     @GetMapping("/add")
-    public String create() {
+    public String create(Model model) {
+        List<DirectorDTO> directors = directorService.listAll();
+        model.addAttribute("directors", directors);
         return "films/addFilm";
     }
+
 
     @PostMapping("/add")
     public String create(@ModelAttribute("filmForm") FilmDTO newFilm) {

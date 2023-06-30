@@ -1,10 +1,14 @@
 package com.example.filmlibrary.source.model;
 
 public enum Genre {
-    FANTASY("Фантастика"),
-    SCIENCE_FICTION("Научная фантастика"),
-    DRAMA("Драма"),
-    NOVEL("Роман");
+    FANTASY("Фантастика"), // 0
+    DRAMA("Драма"), // 1
+    NOVEL("Роман"), // 2
+    MELODRAMA("Мелодрама"), // 3
+    ADVENTURES("Приключения"), // 4
+    COMEDY("Комедия"), // 5
+    SERIAL("Сериал"); // 6
+
 
     private final String genreTextDisplay;
 

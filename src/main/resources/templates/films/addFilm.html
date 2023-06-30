@@ -9,34 +9,60 @@
 <body>
 <div layout:fragment="content">
   <h3 class="mt-3 mb-3">Добавить фильм</h3>
-  <form style="max-width: 50vw" method="POST" th:action="@{/films/add}" th:object="${filmForm}">
-    <div class="mb-3">
-      <label for="title" class="form-label">Название</label>
-      <!--            Название поля инпута должно строго соответствовать названию поля класса (DTO)-->
-      <input name="FilmTitle" type="text" class="form-control" id="title">
+  <form enctype="multipart/form-data" class="needs-validation" novalidate style="max-width: 50vw" method="POST"
+        th:action="@{/films/add}" th:object="${filmForm}">
+    <div class="mt-3 row g-2">
+
+      <div class="col-md">
+        <div class="form-floating">
+          <!--            Название поля инпута должно строго соответствовать названию поля класса (DTO)-->
+          <input name="FilmTitle" type="text" class="form-control" id="title" placeholder="Название фильма"
+                 required>
+          <label for="title">Название</label>
+          <div class="invalid-feedback">Обязательное поле для заполнения</div>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <select class="form-select" name="genre" id="genre" required>
+            <option selected value="default">Выберете жанр из списка</option>
+            <option th:each="genre : ${T(Spring.FilmLibrary.model.Genre).values()}"
+                    th:value="${genre}" th:text="${genre.getGenreTextDisplay()}"></option>
+          </select>
+          <label for="genre" class="form-label">Жанр</label>
+          <div class="invalid-feedback">Обязательное поле для заполнения</div>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input name="premierYear" type="number" class="form-control" id="premierYear"
+                 placeholder="Год выпуска" required>
+          <label for="premierYear" class="form-label">Год выпуска</label>
+          <div class="invalid-feedback">Обязательное поле для заполнения</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="form-floating">
+          <input name="country" type="text" class="form-control" id="country" placeholder="Страна" required>
+          <label for="country" class="form-label">Страна</label>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="form-floating">
+                    <textarea name="description" type="text" class="form-control" id="description"
+                              placeholder="Описание"></textarea>
+          <label for="description">Описание</label>
+        </div>
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="premierYear" class="form-label">Год выпуска</label>
-      <input name="premierYear" type="number" class="form-control" id="premierYear">
+    <div class="mt-3 row g-2">
+      <button type="submit" class="btn btn-primary" onclick="validateForm()">Добавить</button>
+      <button type="button" class="btn btn-secondary" onclick="window.history.back()">Назад</button>
     </div>
-    <div class="mb-3">
-      <label for="country" class="form-label">Страна</label>
-      <input name="country" type="text" class="form-control" id="country">
-    </div>
-    <div class="mb-3">
-      <label for="description" class="form-label">Описание</label>
-      <input name="description" type="text" class="form-control" id="description">
-    </div>
-    <div class="mb-3">
-      <label for="genre" class="form-label">Жанр</label>
-      <select class="form-select" name="genre" id="genre">
-        <option selected>Выберете жанр из списка:</option>
-        <option th:each="genre : ${T(Spring.FilmLibrary.model.Genre).values()}"
-                th:value="${genre}" th:text="${genre.getGenreTextDisplay()}"></option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Добавить</button>
-    <button type="button" class="btn btn-secondary" onclick="window.history.back()">Назад</button>
   </form>
 </div>
 </body>
