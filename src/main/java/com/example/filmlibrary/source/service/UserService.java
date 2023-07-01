@@ -49,7 +49,7 @@ public class UserService
         return mapper.toDTO(repository.save(mapper.toEntity(newObject)));
     }
 
-    public List<FilmDTO> getAllFilmsByUserId(Long userID) {
+    public List<FilmDTO> getAllfilmsByUserId(Long userID) {
         UserDTO userDTO = getOne(userID);
         List<Long> listOrdersId = userDTO.getOrdersIds();
         List<Film> listFilms = new ArrayList<>();
@@ -67,5 +67,4 @@ public class UserService
     public UserDTO getUserByEmail(final String email) {
         return mapper.toDTO(((UserRepository) repository).findUserByEmail(email));
     }
-
 }

@@ -46,7 +46,7 @@ public class User extends GenericModel {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id", nullable = false,
             foreignKey = @ForeignKey(name = "FK_USERS_ROLES"))
     private Role role;

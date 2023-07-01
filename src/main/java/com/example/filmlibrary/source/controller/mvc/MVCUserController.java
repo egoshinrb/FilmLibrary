@@ -3,6 +3,7 @@ package com.example.filmlibrary.source.controller.mvc;
 import com.example.filmlibrary.source.DTO.UserDTO;
 import com.example.filmlibrary.source.service.UserService;
 import com.example.filmlibrary.source.service.userdetails.CustomUserDetails;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,13 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import static com.example.filmlibrary.source.constants.UserRoleConstants.ADMIN;
 
 @Controller
+@Slf4j
 @RequestMapping("/users")
 public class MVCUserController {
-    private final UserService userService;
-
-    public MVCUserController(UserService userService) {
-        this.userService = userService;
-    }
 
 //    @GetMapping("/profile")
 //    public String profile() {
@@ -35,12 +32,17 @@ public class MVCUserController {
 //        return "profile";
 //    }
 
+    private final UserService userService;
+
+    public MVCUserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new UserDTO());
         return "registration";
     }
-
 
     @PostMapping("/registration")
     public String registration(@ModelAttribute("userForm") UserDTO userDTO,
@@ -56,5 +58,4 @@ public class MVCUserController {
         userService.create(userDTO);
         return "redirect:login";
     }
-
 }

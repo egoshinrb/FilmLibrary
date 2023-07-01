@@ -1,6 +1,7 @@
 package com.example.filmlibrary.source.config;
 
-import com.example.filmlibrary.source.service.userdetails.CustomUserDetailService;
+import com.example.filmlibrary.source.service.userdetails.CustomUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,59 +20,55 @@ import static com.example.filmlibrary.source.constants.UserRoleConstants.LIBRARI
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    CustomUserDetailService customUserDetailService;
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final CustomUserDetailsService customUserDetailsService;
 
-    public WebSecurityConfig(CustomUserDetailService customUserDetailService,
-                             BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.customUserDetailService = customUserDetailService;
+    public WebSecurityConfig(BCryptPasswordEncoder bCryptPasswordEncoder, CustomUserDetailsService customUserDetailsService) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.customUserDetailsService = customUserDetailsService;
     }
 
     private final List<String> RESOURCES_WHITE_LIST = List.of(
             "/resources/**",
             "/static/**",
-            "/css/**",
             "/js/**",
-            "/swagger-ui/**",
-            "/"
-    );
-
+            "/css/**",
+            "/",
+            "swagger-ui/**");
 
     private final List<String> FILMS_WHITE_LIST = List.of("/films");
 
     private final List<String> FILMS_PERMISIONS_LIST = List.of(
             "/films/add",
             "films/update",
-            "films/delete"
-    );
+            "films/delete");
 
     private final List<String> USER_WHITE_LIST = List.of(
             "/login",
             "/users/registration",
-            "/users/remember-password/"
-    );
+            "/users/remember-password/");
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .cors().disable()
                 .csrf().disable()
-                // Настройка http-запросов - кому / куда можно / нельзя
-                .authorizeHttpRequests((request) -> request
+                //Настройка http-запросов - кому/куда можно/нельзя
+                .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(RESOURCES_WHITE_LIST.toArray(String[]::new)).permitAll()
                         .requestMatchers(FILMS_WHITE_LIST.toArray(String[]::new)).permitAll()
+                        .requestMatchers(USER_WHITE_LIST.toArray(String[]::new)).permitAll()
                         .requestMatchers(FILMS_PERMISIONS_LIST.toArray(String[]::new)).hasAnyRole(ADMIN, LIBRARIAN)
                         .anyRequest().authenticated()
                 )
-                // Настройкадля входа в систему и выхода
-                .formLogin(form -> form
+                //Настройка для входа в систему
+                .formLogin((form) -> form
                         .loginPage("/login")
-                        // перенаправление после успешного входа
-                        .defaultSuccessUrl("/")
+                        //Перенаправление на главную страницу после успеха
+                        .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
-                .logout(logout -> logout
+                .logout((logout) -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true)
@@ -79,13 +76,13 @@ public class WebSecurityConfig {
                         .permitAll()
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 );
-
+//
         return httpSecurity.build();
     }
 
+    @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(customUserDetailService)
-                .passwordEncoder(bCryptPasswordEncoder);
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
+
 }
