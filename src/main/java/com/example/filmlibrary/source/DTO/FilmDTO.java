@@ -19,5 +19,3 @@ public class FilmDTO extends GenericDTO{
     private Genre genre;
     private List<Long> directorsIds;
 }
-
-

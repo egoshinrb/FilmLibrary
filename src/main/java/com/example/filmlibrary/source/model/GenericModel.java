@@ -32,4 +32,3 @@ public abstract class GenericModel {
     private boolean isDeleted;
 
 }
-

@@ -16,5 +16,3 @@ public class DirectorDTO extends GenericDTO{
     private Double position;
     private List<Long> filmsIds;
 }
-
-

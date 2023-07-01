@@ -14,5 +14,3 @@ public class RoleDTO extends GenericDTO {
     private String title;
     private String description;
 }
-
-

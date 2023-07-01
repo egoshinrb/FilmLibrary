@@ -15,4 +15,3 @@ public class UserController extends GenericController<User> {
         super(userRepository);
     }
 }
-

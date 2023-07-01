@@ -19,5 +19,3 @@ public class Role {
     @Column(name = "description")
     private String description;
 }
-
-

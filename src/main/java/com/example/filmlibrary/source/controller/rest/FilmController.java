@@ -41,5 +41,3 @@ public class FilmController extends GenericController<Film>{
         return ResponseEntity.status(HttpStatus.OK).body(filmRepository.save(film));
     }
 }
-
-

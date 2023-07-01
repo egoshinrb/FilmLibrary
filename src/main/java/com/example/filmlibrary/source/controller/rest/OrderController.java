@@ -15,4 +15,3 @@ public class OrderController extends GenericController<Order> {
         super(genericRepository);
     }
 }
-
