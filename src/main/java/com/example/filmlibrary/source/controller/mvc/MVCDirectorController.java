@@ -1,6 +1,7 @@
 package com.example.filmlibrary.source.controller.mvc;
 
 import com.example.filmlibrary.source.DTO.DirectorDTO;
+import com.example.filmlibrary.source.DTO.FilmDTO;
 import com.example.filmlibrary.source.service.DirectorService;
 import com.example.filmlibrary.source.service.FilmService;
 import lombok.extern.slf4j.Slf4j;
@@ -8,10 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -60,7 +59,15 @@ public class MVCDirectorController {
     }
 
     @GetMapping("/addFilm")
-    public String update() {
+    public String update(Model model) {
+        List<FilmDTO> films = filmService.listAll()
+                .stream().sorted(Comparator.comparing(FilmDTO::getFilmTitle))
+                .toList();
+        final List<DirectorDTO> directors = directorService.listAll()
+                .stream().sorted(Comparator.comparing(DirectorDTO::getDirectorsFio))
+                .toList();
+        model.addAttribute("films", films);
+        model.addAttribute("directors", directors);
         return "directors/addFilmToDirector";
     }
 

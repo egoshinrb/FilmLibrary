@@ -17,7 +17,7 @@
           <li class="nav-link">
             <a class="nav-link active" aria-current="page" href="/directors">Режиссеры</a>
           </li>
-          <li sec:authorize="isAuthenticated() && (hasRole('USER'))" class="nav-link">
+          <li sec:authorize="isAuthenticated() && hasRole('USER')" class="nav-link">
             <a class="nav-link active" aria-current="page" href="/my/films">Мои фильмы</a>
           </li>
           <li sec:authorize="isAuthenticated() && (hasRole('ADMIN') || hasRole('LIBRARIAN'))" class="nav-link">

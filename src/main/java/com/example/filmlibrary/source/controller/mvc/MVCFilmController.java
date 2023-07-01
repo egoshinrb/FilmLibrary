@@ -2,6 +2,7 @@ package com.example.filmlibrary.source.controller.mvc;
 
 import com.example.filmlibrary.source.DTO.DirectorDTO;
 import com.example.filmlibrary.source.DTO.FilmDTO;
+import com.example.filmlibrary.source.model.Genre;
 import com.example.filmlibrary.source.service.DirectorService;
 import com.example.filmlibrary.source.service.FilmService;
 import lombok.extern.slf4j.Slf4j;
@@ -9,10 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -54,8 +54,12 @@ public class MVCFilmController {
 
     @GetMapping("/add")
     public String create(Model model) {
-        List<DirectorDTO> directors = directorService.listAll();
+        final List<DirectorDTO> directors = directorService.listAll()
+                .stream().sorted(Comparator.comparing(DirectorDTO::getDirectorsFio))
+                .collect(Collectors.toList());
+        final List<Genre> genres = Arrays.stream(Genre.values()).sorted(Comparator.comparing(Genre::getGenreTextDisplay)).toList();
         model.addAttribute("directors", directors);
+        model.addAttribute("genres", genres);
         return "films/addFilm";
     }
 
@@ -67,14 +71,31 @@ public class MVCFilmController {
         return "redirect:/films";
     }
 
-    @GetMapping("/addDirector")
-    public String update() {
+//    @GetMapping("/addDirector")
+//    public String update() {
+//        return "films/addDirectorToFilm";
+//    }
+
+        @GetMapping("/addDirector")
+    public String update(Model model) {
+        final List<FilmDTO> films = filmService.listAll()
+                .stream().sorted(Comparator.comparing(FilmDTO::getFilmTitle))
+                .toList();
+        final List<DirectorDTO> directors = directorService.listAll()
+                .stream().sorted(Comparator.comparing(DirectorDTO::getDirectorsFio))
+                .toList();
+        model.addAttribute("films", films);
+        model.addAttribute("directors", directors);
+
         return "films/addDirectorToFilm";
     }
 
     @PostMapping("/addDirector")
     public String update(@RequestParam(name = "filmId") Long filmId, @RequestParam(name = "directorId") Long directorId) {
-        filmService.addFilm(filmId, directorId);
+        log.info("filmID = {} <<>> directorId = {}", filmId, directorId);
+        final FilmDTO film = filmService.addFilm(filmId, directorId);
+        log.info("Добавлен к фильму: \n {}",film.toString());
+
         return "redirect:/films";
     }
 }
