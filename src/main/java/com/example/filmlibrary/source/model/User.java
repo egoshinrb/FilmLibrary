@@ -53,5 +53,4 @@ public class User extends GenericModel {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
     private List<Order> orders;
-
 }

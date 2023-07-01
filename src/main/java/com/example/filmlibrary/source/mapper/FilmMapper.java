@@ -60,5 +60,4 @@ public class FilmMapper
     protected void mapSpecificFields(Film source, FilmDTO destination) {
         destination.setDirectorsIds(getIds(source));
     }
-
 }

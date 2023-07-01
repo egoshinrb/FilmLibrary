@@ -59,3 +59,4 @@ public class MVCUserController {
         return "redirect:login";
     }
 }
+

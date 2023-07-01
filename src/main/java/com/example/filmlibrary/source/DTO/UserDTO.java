@@ -26,4 +26,3 @@ public class UserDTO extends GenericDTO{
     private RoleDTO role;
     private List<Long> ordersIds;
 }
-

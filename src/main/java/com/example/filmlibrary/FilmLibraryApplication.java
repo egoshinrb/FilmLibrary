@@ -25,6 +25,4 @@ public class FilmLibraryApplication implements CommandLineRunner {
         System.out.println("Application path: http://localhost:" + serverPort + "/");
 
     }
-
-
 }

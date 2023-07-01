@@ -32,5 +32,3 @@ public class Order extends GenericModel{
     @Column(name = "purchase", nullable = false)
     private Boolean purchase;
 }
-
-
