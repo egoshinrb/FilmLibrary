@@ -16,6 +16,7 @@ public class FilmDTO extends GenericDTO{
     private String FilmTitle;
     private Integer premierYear;
     private String country;
+    private Integer amount;
     private Genre genre;
     private List<Long> directorsIds;
 }

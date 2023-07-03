@@ -53,4 +53,10 @@ public class User extends GenericModel {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE)
     private List<Order> orders;
+
+    @Column(name = "change_password_token")
+    private String changePasswordToken;
+
+    @Column(name = "isDeleted")
+    private Boolean isDeleted;
 }

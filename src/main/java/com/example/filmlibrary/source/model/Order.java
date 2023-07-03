@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 @SequenceGenerator(name = "default_generator", sequenceName = "orders_sequence", allocationSize = 1)
 public class Order extends GenericModel{
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", nullable = false,
             foreignKey = @ForeignKey(name = "FK_ORDER_INFO_USER"))
     private User user;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "film_id", nullable = false,
             foreignKey = @ForeignKey(name = "FK_ORDER_INFO_FILM"))
     private Film film;
@@ -29,6 +29,9 @@ public class Order extends GenericModel{
     @Column(name = "rent_period", nullable = false)
     private Integer rentPeriod;
 
-    @Column(name = "purchase", nullable = false)
-    private Boolean purchase;
+    @Column(name = "returned", nullable = false)
+    private Boolean returned;
+
+    @Column(name = "return_date", nullable = false)
+    private LocalDateTime returnDate;
 }

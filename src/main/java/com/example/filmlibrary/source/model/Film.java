@@ -28,6 +28,9 @@ public class Film extends GenericModel {
     @Enumerated
     private Genre genre;
 
+    @Column(name = "amount", nullable = false)
+    private Integer amount;
+
     @JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "films_directors",

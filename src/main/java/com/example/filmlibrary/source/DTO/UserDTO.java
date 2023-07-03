@@ -24,5 +24,7 @@ public class UserDTO extends GenericDTO{
     private String address;
     private String email;
     private RoleDTO role;
-    private List<Long> ordersIds;
+    private List<Long> userOrdersIds;
+    private String changePasswordToken;
+    private Boolean isDeleted;
 }

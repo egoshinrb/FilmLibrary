@@ -14,6 +14,7 @@ import com.example.filmlibrary.source.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -67,4 +68,38 @@ public class UserService
     public UserDTO getUserByEmail(final String email) {
         return mapper.toDTO(((UserRepository) repository).findUserByEmail(email));
     }
+
+    public boolean checkPassword(String password, UserDetails foundUser) {
+        return bCryptPasswordEncoder.matches(password, foundUser.getPassword());
+    }
+
+//    public void sendChangePasswordEmail(final UserDTO userDTO) {
+//        UUID uuid = UUID.randomUUID();
+//        log.info("Generated Token: {} ", uuid);
+//
+//        userDTO.setChangePasswordToken(uuid.toString());
+//        update(userDTO);
+//
+//        SimpleMailMessage mailMessage = MailUtils.createMailMessage(
+//                userDTO.getEmail(),
+//                MailConstants.MAIL_SUBJECT_FOR_REMEMBER_PASSWORD,
+//                MailConstants.MAIL_MESSAGE_FOR_REMEMBER_PASSWORD + uuid
+//        );
+//
+//        javaMailSender.send(mailMessage);
+//
+//    }
+
+    public void changePassword(String uuid, String password) {
+        UserDTO userDTO = mapper.toDTO(((UserRepository) repository).findUserByChangePasswordToken(uuid));
+        userDTO.setChangePasswordToken(null);
+        userDTO.setPassword(bCryptPasswordEncoder.encode(password));
+        update(userDTO);
+    }
+
+
+//    public List<String> getUserEmailsWithDelayedRentDate() {
+//        return ((UserRepository) repository).getDelayedEmails();
+//    }
+
 }

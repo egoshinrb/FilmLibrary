@@ -16,5 +16,6 @@ public class OrderDTO extends GenericDTO{
     private Long userId;
     private LocalDateTime rentDate;
     private Integer rentPeriod;
-    private Boolean purchase;
+    private LocalDateTime returnDate;
+    private Boolean returned;
 }
