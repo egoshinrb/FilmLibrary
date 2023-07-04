@@ -1,12 +1,11 @@
 package com.example.filmlibrary.service;
 
 
-import com.example.filmlibrary.source.DTO.GenericDTO;
-import com.example.filmlibrary.source.mapper.GenericMapper;
-import com.example.filmlibrary.source.model.GenericModel;
-import com.example.filmlibrary.source.repository.GenericRepository;
-import com.example.filmlibrary.source.service.GenericService;
-import com.example.filmlibrary.source.service.userdetails.CustomUserDetails;
+import com.example.filmlibrary.dto.GenericDTO;
+import com.example.filmlibrary.mapper.GenericMapper;
+import com.example.filmlibrary.model.GenericModel;
+import com.example.filmlibrary.repository.GenericRepository;
+import com.example.filmlibrary.service.userdetails.CustomUserDetails;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

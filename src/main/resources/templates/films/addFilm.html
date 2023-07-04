@@ -25,7 +25,7 @@
                 <div class="form-floating">
                     <select class="form-select" name="genre" id="genre" required>
                         <option selected value="default">Выберете жанр из списка</option>
-                        <option th:each="genre : ${T(com.example.springfilmlibraryproject.filmLibrary.model.Genre).values()}"
+                        <option th:each="genre : ${T(com.example.filmlibrary.filmLibrary.model.Genre).values()}"
                                 th:value="${genre}" th:text="${genre.getGenreTextDisplay()}"></option>
                     </select>
                     <label for="genre">Жанр</label>
@@ -41,7 +41,7 @@
         <div class="mt-3 row g-2">
             <div class="col-md">
                 <div class="form-floating">
-                    <input name="amount" type="number" class="form-control" id="amount" placeholder="Количество фильмов" value="1" required>
+                    <input name="amount" type="number" class="form-control" id="amount" placeholder="Количество книг" value="1" required>
                     <label for="amount">Количество</label>
                     <div class="invalid-feedback">Обязательное поле для заполнения</div>
                 </div>

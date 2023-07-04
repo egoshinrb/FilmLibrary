@@ -1,7 +1,7 @@
 package com.example.filmlibrary.controllers.mvc;
 
-import com.example.filmlibrary.source.DTO.DirectorDTO;
-import com.example.filmlibrary.source.service.DirectorService;
+import com.example.filmlibrary.dto.DirectorDTO;
+import com.example.filmlibrary.service.DirectorService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
@@ -11,13 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -36,8 +34,8 @@ public class MVCDirectorControllerTest
     private DirectorService directorService;
 
     //Создаем нового режиссера для создания через контроллер (тест дата)
-    private final DirectorDTO directorDTO = new DirectorDTO("MVC_TestDirectorFio", 1., new ArrayList<>());
-    private final DirectorDTO directorDTOUpdated = new DirectorDTO("MVC_TestDirectorFio_UPDATED", 1., new ArrayList<>());
+    private final DirectorDTO directorDTO = new DirectorDTO("MVC_TestDirectorFio", "Test Position", new ArrayList<>());
+    private final DirectorDTO directorDTOUpdated = new DirectorDTO("MVC_TestDirectorFio_UPDATED", "Test Position", new ArrayList<>());
 
 
     /**
@@ -161,4 +159,6 @@ public class MVCDirectorControllerTest
         assertTrue(deletedDirector.isDeleted());
         log.info("Тест по soft удалению режиссера через MVC закончен успешно!");
     }
+
+
 }

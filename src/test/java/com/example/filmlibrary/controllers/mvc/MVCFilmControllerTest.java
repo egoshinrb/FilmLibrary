@@ -1,8 +1,8 @@
 package com.example.filmlibrary.controllers.mvc;
 
-import com.example.filmlibrary.source.DTO.FilmDTO;
-import com.example.filmlibrary.source.model.Genre;
-import com.example.filmlibrary.source.service.FilmService;
+import com.example.filmlibrary.dto.FilmDTO;
+import com.example.filmlibrary.model.Genre;
+import com.example.filmlibrary.service.FilmService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
@@ -30,7 +30,7 @@ public class MVCFilmControllerTest
     private FilmService filmService;
 
     //Создаем нового режиссера для создания через контроллер (тест дата)
-    private final FilmDTO filmDTO = new FilmDTO("MVC_TestFilmTitle", 2023, "Test Country", 5, Genre.DRAMA, new ArrayList<>());
+    private final FilmDTO filmDTO = new FilmDTO("MVC_TestFilmTitle", LocalDate.now(), "Test Country", 5, Genre.DRAMA, new ArrayList<>());
 
 
     /**
@@ -99,4 +99,6 @@ public class MVCFilmControllerTest
     protected void deleteObject() throws Exception {
 
     }
+
+
 }

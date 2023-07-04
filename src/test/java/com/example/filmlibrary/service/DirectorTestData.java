@@ -1,10 +1,8 @@
 package com.example.filmlibrary.service;
 
+import com.example.filmlibrary.dto.DirectorDTO;
+import com.example.filmlibrary.model.Director;
 
-import com.example.filmlibrary.source.DTO.DirectorDTO;
-import com.example.filmlibrary.source.model.Director;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,16 +10,16 @@ import java.util.List;
 
 public interface DirectorTestData {
     DirectorDTO DIRECTOR_DTO_1 = new DirectorDTO("directorFio1",
-            1.,
+            "position1",
             new ArrayList<>());
 
     DirectorDTO DIRECTOR_DTO_2 = new DirectorDTO("directorFio2",
-            2.,
+            "position2",
             new ArrayList<>());
 
 
     DirectorDTO DIRECTOR_DTO_3_DELETED = new DirectorDTO("directorFio3",
-            3.,
+            "position3",
             new ArrayList<>());
 
 
@@ -29,17 +27,17 @@ public interface DirectorTestData {
 
 
     Director DIRECTOR_1 = new Director("director1",
-            1.,
+            "position1",
             false,
             null);
 
     Director DIRECTOR_2 = new Director("director2",
-            2.,
+            "position2",
             false,
             null);
 
     Director DIRECTOR_3 = new Director("director3",
-            3.,
+            "position3",
             false,
             null);
 

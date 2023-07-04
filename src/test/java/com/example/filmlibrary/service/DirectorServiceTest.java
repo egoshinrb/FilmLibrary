@@ -1,22 +1,7 @@
-//package com.example.filmlibrary.service;
-//
-//
-//import com.example.filmlibrary.source.DTO.DirectorDTO;
-//import com.example.filmlibrary.source.mapper.DirectorMapper;
-//import com.example.filmlibrary.source.model.Director;
-//import com.example.filmlibrary.source.repository.DirectorRepository;
-//import com.example.filmlibrary.source.service.DirectorService;
-//import lombok.extern.slf4j.Slf4j;
-//import org.junit.jupiter.api.MethodOrderer;
-//import org.junit.jupiter.api.Order;
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.TestMethodOrder;
-//import org.mockito.Mockito;
-//
-//import java.util.List;
-//import java.util.Optional;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//
+package com.example.filmlibrary.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 //
 //@Slf4j
 //@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -85,8 +70,8 @@
 //        DirectorDTO directorDTO = service.update(DirectorTestData.DIRECTOR_DTO_1);
 //        log.info("Testing create(): {}", directorDTO);
 //    }
-//
-//
+
+
 //}
-//
-//
+
+
