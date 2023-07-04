@@ -1,58 +1,66 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Все фильмы фильмотеки</title>
+    <title>Фильмы фильмотеки</title>
 </head>
 <body>
 <div layout:fragment="content">
     <h1>Все фильмы фильмотеки</h1>
     <div class="row">
         <div class="col">
-            <a href="films/add"
-               class="btn btn-secondary"
+            <a sec:authorize="isAuthenticated() && (hasRole('ADMIN') || hasRole('LIBRARIAN'))"
+               th:href="@{/films/add}"
+               class="btn btn-success"
                role="button"
                style="float: right"
-               aria-disabled="true">Добавить фильм
-            </a>
+               aria-disabled="true">Добавить фильм</a>
         </div>
     </div>
-    <br>
-    <div class="row">
-        <div class="col">
-            <a href="films/addDirector"
-               class="btn btn-secondary"
-               role="button"
-               style="float: right"
-               aria-disabled="true">Добавить режиссера к фильму
-            </a>
-        </div>
-    </div>
-    <br>
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Название</th>
             <th scope="col">Жанр</th>
-            <th scope="col">Год выпуска</th>
-            <th scope="col">Режиссер(ы)</th>
+            <th scope="col">Дата премьеры</th>
             <th scope="col">Страна</th>
             <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="film : ${films}">
-            <td th:text="${film.getFilmTitle()}"></td>
+            <td>
+                <a class="text-link text-blue" th:href="'/films/' + ${film.getId()}" th:text="${film.getFilmTitle()}"></a>
+            </td>
             <td th:text="${film.getGenre().getGenreTextDisplay()}"></td>
             <td th:text="${film.getPremierYear()}"></td>
-            <td th:classappend="${film.getDirectorsIds().isEmpty()} ? 'no-directors'"
-                th:text="${film.getDirectorsIds().isEmpty()} ? 'Режиссер не указан' : ${filmsAndDirectors.get(film)}"></td>
             <td th:text="${film.getCountry()}"></td>
+
+<!--            <td>-->
+<!--                <a class="text-link text-blue" th:if="${film.getOnlineCopyPath()} != null" th:href="@{|/films/download?filmId=${film.id}|}">-->
+<!--                    <span>Скачать фильм</span>-->
+<!--                </a>-->
+<!--            </td>-->
+            <td>
+                <a th:if="${film.getAmount() > 0}" sec:authorize="!hasRole('ADMIN')" class="btn btn-sm btn-outline-success"
+                   th:href="'/rent/film/' + ${film.id}">Арендовать фильм</a>
+            </td>
         </tr>
         </tbody>
     </table>
 </div>
+
+
+
+
+
+            <!--            <td>-->
+            <!--                <ul>-->
+            <!--                    <li th:each="director: ${film.getDirectorsIds()}" th:text="${director.getDirectorrFIO()}"></li>-->
+            <!--                </ul>-->
+            <!--            </td>-->
 </body>
 </html>

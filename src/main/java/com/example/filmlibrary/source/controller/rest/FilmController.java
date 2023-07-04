@@ -8,18 +8,18 @@ import com.example.filmlibrary.source.repository.FilmRepository;
 import com.example.filmlibrary.source.repository.GenericRepository;
 import com.example.filmlibrary.source.service.FilmService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.webjars.NotFoundException;
 
 @RestController
 @RequestMapping(value = "/api/rest/films")
+@SecurityRequirement(name = "Bearer Authentication")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @Tag(name = "Фильмы", description = "Контроллер для работы с фильмами из фильмотеки")
 public class FilmController extends GenericController<Film, FilmDTO>{
     public FilmController(FilmService filmService) {

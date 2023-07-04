@@ -20,13 +20,14 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/rest/users")
+@RequestMapping("api/rest/users")
 @SecurityRequirement(name = "Bearer Authentication")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @Tag(name = "Пользователи",
         description = "Контроллер для работы с пользователями фильмотеки")
+public class UserController
+        extends GenericController<User, UserDTO> {
 
-public class UserController extends GenericController<User, UserDTO> {
     private final CustomUserDetailsService customUserDetailsService;
     private final JWTTokenUtil jwtTokenUtil;
     private final UserService userService;

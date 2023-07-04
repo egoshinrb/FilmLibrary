@@ -11,6 +11,7 @@ import com.example.filmlibrary.source.model.User;
 import com.example.filmlibrary.source.repository.GenericRepository;
 import com.example.filmlibrary.source.repository.OrderRepository;
 import com.example.filmlibrary.source.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
@@ -20,22 +21,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class UserService
         extends GenericService<User, UserDTO> {
-
-    OrderRepository orderRepository;
-    FilmMapper filmMapper;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public UserService(GenericRepository<User> repository,
                        GenericMapper<User, UserDTO> mapper,
-                       OrderRepository orderRepository,
-                       FilmMapper filmMapper,
                        BCryptPasswordEncoder bCryptPasswordEncoder) {
         super(repository, mapper);
-        this.orderRepository = orderRepository;
-        this.filmMapper = filmMapper;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
@@ -48,17 +43,6 @@ public class UserService
         newObject.setCreatedBy("REGISTRATION FORM");
         newObject.setCreatedWhen(LocalDateTime.now());
         return mapper.toDTO(repository.save(mapper.toEntity(newObject)));
-    }
-
-    public List<FilmDTO> getAllfilmsByUserId(Long userID) {
-        UserDTO userDTO = getOne(userID);
-        List<Long> listOrdersId = userDTO.getOrdersIds();
-        List<Film> listFilms = new ArrayList<>();
-        for (Long id : listOrdersId) {
-            Order order = orderRepository.findById(id).orElseThrow(() -> new NotFoundException("заказ не найден"));
-            listFilms.add(order.getFilm());
-        }
-        return filmMapper.toDTOs(listFilms);
     }
 
     public UserDTO getUserByLogin(final String login) {
@@ -101,5 +85,4 @@ public class UserService
 //    public List<String> getUserEmailsWithDelayedRentDate() {
 //        return ((UserRepository) repository).getDelayedEmails();
 //    }
-
 }

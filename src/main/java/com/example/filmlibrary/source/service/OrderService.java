@@ -67,8 +67,8 @@ public class OrderService extends GenericService<Order, OrderDTO> {
         OrderDTO orderDTO = getOne(id);
         orderDTO.setReturned(true);
         orderDTO.setReturnDate(LocalDateTime.now());
-        Long filmId = orderDTO.getFilmId().longValue();
-        FilmDTO filmDTO = filmService.getOne(filmId);   ///Warn
+        Long filmId = orderDTO.getFilmId();
+        FilmDTO filmDTO = filmService.getOne(filmId);
         filmDTO.setAmount(filmDTO.getAmount() + 1);
         update(orderDTO);
         filmService.update(filmDTO);

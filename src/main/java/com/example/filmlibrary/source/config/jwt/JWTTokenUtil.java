@@ -20,7 +20,6 @@ import java.util.function.Function;
        Signature = ivykdkfay6rdfi
  */
 
-
 @Component
 @Slf4j
 public class JWTTokenUtil {
@@ -94,5 +93,4 @@ public class JWTTokenUtil {
     private Claims getAllClaimsFromToken(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
-
 }

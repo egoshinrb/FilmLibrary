@@ -27,7 +27,7 @@ public class DirectorMapper
     @PostConstruct
     protected void setupMapper() {
         modelMapper.createTypeMap(Director.class, DirectorDTO.class)
-                .addMappings(mapping -> mapping.skip(DirectorDTO::setFilmsIds))
+                .addMappings(mapping -> mapping.skip(DirectorDTO::setFilmIds))
                 .setPostConverter(toDTOConverter());
 
         //TypeMap — это правило, в котором указываем все нюансы маппинга
@@ -39,8 +39,8 @@ public class DirectorMapper
 
     @Override
     protected void mapSpecificFields(DirectorDTO source, Director destination) {
-        if(!Objects.isNull(source.getFilmsIds())) {
-            destination.setFilms(filmRepository.findAllById(source.getFilmsIds()));
+        if(!Objects.isNull(source.getFilmIds())) {
+            destination.setFilms(filmRepository.findAllById(source.getFilmIds()));
         } else {
             destination.setFilms(Collections.emptyList());
         }
@@ -57,6 +57,6 @@ public class DirectorMapper
 
     @Override
     protected void mapSpecificFields(Director source, DirectorDTO destination) {
-        destination.setFilmsIds(getIds(source));
+        destination.setFilmIds(getIds(source));
     }
 }

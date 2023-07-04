@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/rest/order/info")
+@RequestMapping("/api/rest/orders/info")
 @Tag(name = "Заказ фильмов",
         description = "Контроллер для работы с заказом фильмов пользователями фильмотеки")
 public class OrderController extends GenericController<Order, OrderDTO> {

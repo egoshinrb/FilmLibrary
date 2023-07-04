@@ -33,7 +33,7 @@ public class MVCDirectorController {
         Map<DirectorDTO, List<String>> DirectorsAndFilms = new HashMap<>();
 
         for (DirectorDTO director : directors) {
-            List<Long> filmsId = directorService.getOne(director.getId()).getFilmsIds();
+            List<Long> filmsId = directorService.getOne(director.getId()).getFilmIds();
             List<String> films = new ArrayList<>();
             for (Long id : filmsId) {
                 films.add(filmService.getOne(id).getFilmTitle());
@@ -64,7 +64,7 @@ public class MVCDirectorController {
                 .stream().sorted(Comparator.comparing(FilmDTO::getFilmTitle))
                 .toList();
         final List<DirectorDTO> directors = directorService.listAll()
-                .stream().sorted(Comparator.comparing(DirectorDTO::getDirectorsFio))
+                .stream().sorted(Comparator.comparing(DirectorDTO::getDirectorsFIO))
                 .toList();
         model.addAttribute("films", films);
         model.addAttribute("directors", directors);

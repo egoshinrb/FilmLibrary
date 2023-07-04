@@ -17,21 +17,20 @@ import org.webjars.NotFoundException;
 
 //@Hidden // swagger annotation скрыть контроллер
 @RestController
-@RequestMapping("/api/rest/directors") // http://localhost:8080/directors
-@Tag(name = "Режиссеры", description = "Контроллер для работы с режиссерами фильмов из фильмотеки")
+@RequestMapping("api/rest/directors")  // http://localhost:8080/directors
+@Tag(name = "Режиссеры", description = "Контроллер для работы с режиссерами фильмотеки")
 public class DirectorController extends GenericController<Director, DirectorDTO> {
+
 
     public DirectorController(DirectorService directorService) {
         super(directorService);
     }
 
-
     @Operation(description = "Добавить фильм к режиссеру")
-    @RequestMapping(value = "/addFilm",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/addFilm", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DirectorDTO> addFilm(@RequestParam(value = "filmId") Long filmId,
-                                            @RequestParam(value = "directorId") Long directorId) {
+                                               @RequestParam(value = "directorId") Long directorId) {
+
         return ResponseEntity.status(HttpStatus.OK).body(((DirectorService) service).addFilm(filmId, directorId));
     }
 }

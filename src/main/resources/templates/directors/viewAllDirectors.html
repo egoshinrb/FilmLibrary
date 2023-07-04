@@ -1,59 +1,53 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layout}">
 <head>
-  <meta charset="UTF-8">
-  <title>Все режиссеры фильмотеки</title>
-  <style>
-    .no-films {
-      color: red;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Режиссеры фильмотеки</title>
+    <style>
+        .not-enough-directors {
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <div layout:fragment="content">
-  <h1>Все режиссеры фильмотеки</h1>
-  <div class="row">
-    <div class="col">
-      <a href="directors/add"
-         class="btn btn-secondary"
-         role="button"
-         style="float: right"
-         aria-disabled="true">Добавить режиссера
-      </a>
+    <h1>Все режиссеры фильмотеки</h1>
+    <div class="row">
+        <div class="col">
+            <a sec:authorize="isAuthenticated() && (hasRole('ADMIN') || hasRole('LIBRARIAN'))"
+               th:href="@{/directors/add}"
+               class="btn btn-success"
+               role="button"
+               style="float: right"
+               aria-disabled="true">Добавить режиссера</a>
+        </div>
     </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col">
-      <a href="directors/addFilm"
-         class="btn btn-secondary"
-         role="button"
-         style="float: right"
-         aria-disabled="true">Добавить фильм к режиссеру
-      </a>
-    </div>
-  </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ФИО</th>
+            <th scope="col">Должность</th>
 
-  <table class="table">
-    <thead>
-    <tr>
-      <th scope="col">ФИО</th>
-      <th scope="col">Рейтинг</th>
-      <th scope="col">Список фильмов</th>
-      <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="director : ${directors}">
-      <td th:text="${director.getDirectorsFio()}"></td>
-      <td th:text="${director.getPosition()}"></td>
-      <td th:classappend="${director.getFilmsIds().isEmpty()} ? 'no-films'"
-          th:text="${director.getFilmsIds().isEmpty()} ? 'Фильм не указан' : ${DirectorsAndFilms.get(director)}"></td>
-    </tr>
-    </tbody>
-  </table>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="director : ${directors}">
+            <td th:text="${director.getDirectorsFIO()}"></td>
+            <td th:text="${director.getPosition()}"></td>
+            <td>
+                <div sec:authorize="isAuthenticated() && (hasRole('ADMIN') || hasRole('LIBRARIAN'))">
+                    <a class="btn btn-sm btn-outline-success" th:href="'/directors/update/' + ${director.getId()}">Обновить</a>
+                    <a th:if="${!director.isDeleted()}" class="btn btn-sm btn-outline-danger" th:href="'/directors/delete/' + ${director.getId()}"
+                       onclick="return confirm('Вы действительно хотите удалить режиссера?');">Удалить</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

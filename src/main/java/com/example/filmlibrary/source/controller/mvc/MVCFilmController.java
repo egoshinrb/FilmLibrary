@@ -37,7 +37,7 @@ public class MVCFilmController {
             List<Long> directorsId = filmService.getOne(film.getId()).getDirectorsIds();
             List<String> directors = new ArrayList<>();
             for (Long id : directorsId) {
-                directors.add(directorService.getOne(id).getDirectorsFio());
+                directors.add(directorService.getOne(id).getDirectorsFIO());
             }
             filmsAndDirectors.put(film, directors);
         }
@@ -55,7 +55,7 @@ public class MVCFilmController {
     @GetMapping("/add")
     public String create(Model model) {
         final List<DirectorDTO> directors = directorService.listAll()
-                .stream().sorted(Comparator.comparing(DirectorDTO::getDirectorsFio))
+                .stream().sorted(Comparator.comparing(DirectorDTO::getDirectorsFIO))
                 .collect(Collectors.toList());
         final List<Genre> genres = Arrays.stream(Genre.values()).sorted(Comparator.comparing(Genre::getGenreTextDisplay)).toList();
         model.addAttribute("directors", directors);
@@ -82,7 +82,7 @@ public class MVCFilmController {
                 .stream().sorted(Comparator.comparing(FilmDTO::getFilmTitle))
                 .toList();
         final List<DirectorDTO> directors = directorService.listAll()
-                .stream().sorted(Comparator.comparing(DirectorDTO::getDirectorsFio))
+                .stream().sorted(Comparator.comparing(DirectorDTO::getDirectorsFIO))
                 .toList();
         model.addAttribute("films", films);
         model.addAttribute("directors", directors);

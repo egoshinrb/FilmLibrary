@@ -1,14 +1,12 @@
 package com.example.filmlibrary.source.DTO;
 
 import com.example.filmlibrary.source.model.Genre;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString

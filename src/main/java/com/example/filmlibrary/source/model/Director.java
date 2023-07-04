@@ -16,10 +16,13 @@ import java.util.List;
 public class Director extends GenericModel{
 
     @Column(name = "directors_fio", nullable = false)
-    private String directorsFio;
+    private String directorsFIO;
 
     @Column(name = "position")
     private Double position;
+
+    @Column(name = "is_deleted", columnDefinition = "boolean default false")
+    private boolean isDeleted;
 
     @JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

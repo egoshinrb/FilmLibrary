@@ -12,13 +12,13 @@ import java.util.List;
 @Setter
 @ToString
 public class DirectorDTO extends GenericDTO{
-    private String directorsFio;
+    private String directorsFIO;
     private Double position;
     private List<Long> filmIds;
     private boolean isDeleted;
 
-    public DirectorDTO(String directorsFio, Double position, List<Long> filmIds) {
-        this.directorsFio = directorsFio;
+    public DirectorDTO(String directorsFIO, Double position, List<Long> filmIds) {
+        this.directorsFIO = directorsFIO;
         this.position = position;
         this.filmIds = filmIds;
         this.isDeleted = false;
