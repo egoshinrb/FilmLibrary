@@ -13,7 +13,7 @@ public class OpenApiConfig {
     public OpenAPI filmLibraryProject() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Онлайн Библиотека")
+                        .title("Онлайн-фильмотека")
                         .description("Сервис, позволяющий получить доступ к фильму")
                         .version("0.1")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org"))
