@@ -11,4 +11,3 @@ public interface Mapper<E extends GenericModel, D extends GenericDTO> {
     List<E> toEntities(List<D> dtos);
     List<D> toDTOs(List<E> entities);
 }
-

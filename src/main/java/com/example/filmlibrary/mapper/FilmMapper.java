@@ -23,7 +23,6 @@ public class FilmMapper
         super(Film.class, FilmDTO.class, modelMapper);
         this.directorRepository = directorRepository;
     }
-
     @PostConstruct
     @Override
     protected void setupMapper() {

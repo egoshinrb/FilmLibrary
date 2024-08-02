@@ -80,5 +80,3 @@ public abstract class GenericMapper<E extends GenericModel, D extends GenericDTO
 
     protected abstract List<Long> getIds(E entity);
 }
-
-

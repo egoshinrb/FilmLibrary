@@ -56,5 +56,3 @@ public class UserMapper extends GenericMapper<User, UserDTO> {
                 .collect(Collectors.toList());
     }
 }
-
-

@@ -55,6 +55,7 @@ public class DirectorMapper
                 .collect(Collectors.toList());
     }
 
+
     @Override
     protected void mapSpecificFields(Director source, DirectorDTO destination) {
         destination.setFilmsIds(getIds(source));

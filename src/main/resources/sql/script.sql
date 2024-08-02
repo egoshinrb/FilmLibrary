@@ -2,7 +2,6 @@ insert into roles
 values (1, 'Роль пользователя', 'USER'),
        (2, 'Роль библиотекаря', 'SPECIALIST');
 
-
 --Режиссеры
 drop sequence directors_sequence;
 create sequence directors_sequence;

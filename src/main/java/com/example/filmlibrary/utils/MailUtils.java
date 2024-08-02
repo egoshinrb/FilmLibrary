@@ -11,7 +11,6 @@ public class MailUtils {
     private MailUtils() {
     }
 
-
     public static SimpleMailMessage createMailMessage(final String email,
                                                       final String subject,
                                                       final String text) {

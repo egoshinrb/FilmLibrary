@@ -33,7 +33,6 @@ public abstract class GenericService<E extends GenericModel, D extends GenericDT
         newObject.setCreatedWhen(LocalDateTime.now());
         return mapper.toDTO(repository.save(mapper.toEntity(newObject)));
     }
-
     public D update(D updatedObject){
         return mapper.toDTO(repository.save(mapper.toEntity(updatedObject)));
     }

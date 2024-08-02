@@ -55,6 +55,7 @@ public class JWTTokenUtil {
         return expiration.before(new Date());
     }
 
+
     //нужно достать expirationDate из токена
     private Date getExpirationDateFromToken(String token) {
         return getClaimsFromToken(token, Claims::getExpiration);

@@ -17,7 +17,6 @@ import static com.example.filmlibrary.constants.FileDirectoriesConstants.*;
 public class FileHelper {
     private FileHelper() {
     }
-
     public static String createFile(final MultipartFile file) {
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
         String resultFileName = "";

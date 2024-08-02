@@ -63,5 +63,4 @@ public abstract class CommonTestREST {
             return null;
         }
     }
-    
 }

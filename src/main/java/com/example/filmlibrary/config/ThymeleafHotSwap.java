@@ -28,5 +28,4 @@ public class ThymeleafHotSwap {
         return resolver;
     }
 }
-
 //https://stackoverflow.com/questions/40057057/spring-boot-and-thymeleaf-hot-swap-templates-and-resources-once-again

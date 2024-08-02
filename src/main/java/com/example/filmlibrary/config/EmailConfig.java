@@ -20,7 +20,6 @@ public class EmailConfig {
     @Value("${spring.mail.password}")
     private String mailServerPassword;
 
-
 //    https://help.mail.ru/mail/mailer/popsmtp
     @Bean
     public JavaMailSender getJavaMailSender() {

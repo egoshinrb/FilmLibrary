@@ -27,4 +27,3 @@ public class UserDTO extends GenericDTO{
     private String changePasswordToken;
     private List<Long> ordersIds;
 }
-
