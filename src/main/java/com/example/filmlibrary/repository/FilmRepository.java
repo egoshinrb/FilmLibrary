@@ -28,7 +28,7 @@ public interface FilmRepository  extends GenericRepository<Film> {
 
     @Query("""
           select case when count(f) > 0 then false else true end
-          from Film f join Order o on f.id = o.film_id
+          from Film f join Order o on f.id = o.film.id
           where f.id = :id and o.purchase = false
           """)
     boolean isFilmCanBeDeleted(final Long id);
