@@ -1,28 +1,27 @@
-<!--РЎС‚СЂР°РЅРёС†Р° СЂРµРіРёСЃС‚СЂР°С†РёРё-->
+<!--Страница регистрации-->
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}"
       lang="en">
 <head>
-    <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Р РµРіРёСЃС‚СЂР°С†РёСЏ</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=cp1251"/>
+    <title>Регистрация</title>
 </head>
 <body>
 <div layout:fragment="content">
-    <!--        Р¤РѕСЂРјР° СЂРµРіРёСЃС‚СЂР°С†РёРё-->
-    <!--        action="/registration" - url РЅР° РєРѕС‚РѕСЂС‹Р№ Р±СѓРґСѓС‚ РѕС‚РїСЂР°РІР»РµРЅС‹ РґР°РЅРЅС‹Рµ-->
-    <!--        object="userForm" - РёРјСЏ РѕР±СЉРµРєС‚Р° РІ РєРѕС‚РѕСЂРѕРј Р±СѓРґСѓС‚ С…СЂР°РЅРёС‚СЃСЏ РґР°РЅРЅС‹Рµ (РЅСѓР¶РЅРѕ С‡С‚РѕР±С‹ РїРѕС‚РѕРј РІ РєРѕРЅС‚СЂРѕР»Р»РµСЂРµ РёС… СЂР°СЃРїР°СЂСЃРёС‚СЊ)-->
-    <h3 class="mt-3 mb-3">Р РµРіРёСЃС‚СЂР°С†РёСЏ РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</h3>
+    <!--        Форма регистрации-->
+    <!--        action="/registration" - url на который будут отправлены данные-->
+    <!--        object="userForm" - имя объекта в котором будут хранится данные (нужно чтобы потом в контроллере их распарсить)-->
+    <h3 class="mt-3 mb-3">Регистрация нового пользователя</h3>
     <form method="POST" class="needs-validation" novalidate style="max-width: 50vw" th:action="@{/users/registration}" th:object="${userForm}">
         <div class="mt-3 row g-2">
             <div class="col-md">
                 <div class="form-floating">
-                    <input name="login" type="text" class="form-control" id="login" placeholder="Р’РІРµРґРёС‚Рµ Р»РѕРіРёРЅ" required>
-                    <label for="login">Р›РѕРіРёРЅ</label>
-                    <div class="invalid-feedback">РћР±СЏР·Р°С‚РµР»СЊРЅРѕРµ РїРѕР»Рµ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ</div>
+                    <input name="login" type="text" class="form-control" id="login" placeholder="Введите логин" required>
+                    <label for="login">Логин</label>
+                    <div class="invalid-feedback">Обязательное поле для заполнения</div>
                     <div class="alert alert-danger" th:if="${#fields.hasErrors('login')}">
                         <p th:errors="*{login}"></p>
                     </div>
@@ -30,40 +29,40 @@
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <input name="password" type="password" class="form-control" id="password" placeholder="Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ" required>
-                    <label for="password">РџР°СЂРѕР»СЊ</label>
-                    <div class="invalid-feedback">РћР±СЏР·Р°С‚РµР»СЊРЅРѕРµ РїРѕР»Рµ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ</div>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Введите пароль" required>
+                    <label for="password">Пароль</label>
+                    <div class="invalid-feedback">Обязательное поле для заполнения</div>
                 </div>
             </div>
         </div>
         <div class="mt-3 row g-2">
             <div class="col-md">
                 <div class="form-floating">
-                    <input name="firstName" type="text" class="form-control" id="firstName" placeholder="Р’РІРµРґРёС‚Рµ РёРјСЏ" required>
-                    <label for="firstName">РРјСЏ</label>
-                    <div class="invalid-feedback">РћР±СЏР·Р°С‚РµР»СЊРЅРѕРµ РїРѕР»Рµ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ</div>
+                    <input name="firstName" type="text" class="form-control" id="firstName" placeholder="Введите имя" required>
+                    <label for="firstName">Имя</label>
+                    <div class="invalid-feedback">Обязательное поле для заполнения</div>
                 </div>
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <input name="middleName" type="text" class="form-control" id="middleName" placeholder="Р’РІРµРґРёС‚Рµ РѕС‚С‡РµСЃС‚РІРѕ">
-                    <label for="middleName">РћС‚С‡РµСЃС‚РІРѕ</label>
+                    <input name="middleName" type="text" class="form-control" id="middleName" placeholder="Введите отчество">
+                    <label for="middleName">Отчество</label>
                 </div>
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Р’РІРµРґРёС‚Рµ С„Р°РјРёР»РёСЋ" required>
-                    <label for="lastName">Р¤Р°РјРёР»РёСЏ</label>
-                    <div class="invalid-feedback">РћР±СЏР·Р°С‚РµР»СЊРЅРѕРµ РїРѕР»Рµ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ</div>
+                    <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Введите фамилию" required>
+                    <label for="lastName">Фамилия</label>
+                    <div class="invalid-feedback">Обязательное поле для заполнения</div>
                 </div>
             </div>
         </div>
         <div class="mt-3 row g-2">
             <div class="col-md">
                 <div class="form-floating">
-                    <input name="email" type="email" class="form-control" id="email" placeholder="Р’РІРµРґРёС‚Рµ email" required>
+                    <input name="email" type="email" class="form-control" id="email" placeholder="Введите email" required>
                     <label for="email">Email</label>
-                    <div class="invalid-feedback">РћР±СЏР·Р°С‚РµР»СЊРЅРѕРµ РїРѕР»Рµ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ</div>
+                    <div class="invalid-feedback">Обязательное поле для заполнения</div>
                     <div class="alert alert-danger" th:if="${#fields.hasErrors('email')}">
                         <p th:errors="*{email}"></p>
                     </div>
@@ -71,30 +70,30 @@
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <input name="phone" type="text" class="form-control" id="phone" placeholder="Р’РІРµРґРёС‚Рµ С‚РµР»РµС„РѕРЅ">
-                    <label for="phone">РўРµР»РµС„РѕРЅ</label>
-                    <div class="invalid-feedback">РћР±СЏР·Р°С‚РµР»СЊРЅРѕРµ РїРѕР»Рµ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ</div>
+                    <input name="phone" type="text" class="form-control" id="phone" placeholder="Введите телефон">
+                    <label for="phone">Телефон</label>
+                    <div class="invalid-feedback">Обязательное поле для заполнения</div>
                 </div>
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <input name="birthDate" type="date" class="form-control" id="birthDate" placeholder="Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ СЂРѕР¶РґРµРЅРёСЏ" required>
-                    <label for="birthDate">Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ</label>
-                    <div class="invalid-feedback">РћР±СЏР·Р°С‚РµР»СЊРЅРѕРµ РїРѕР»Рµ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ</div>
+                    <input name="birthDate" type="date" class="form-control" id="birthDate" placeholder="Введите дату рождения" required>
+                    <label for="birthDate">Дата рождения</label>
+                    <div class="invalid-feedback">Обязательное поле для заполнения</div>
                 </div>
             </div>
         </div>
         <div class="mt-3 row g-2">
             <div class="col-md">
                 <div class="form-floating">
-                    <textarea name="address" type="text" class="form-control" id="address" placeholder="РђРґСЂРµСЃ"></textarea>
-                    <label for="address">РђРґСЂРµСЃ</label>
+                    <textarea name="address" type="text" class="form-control" id="address" placeholder="Адрес"></textarea>
+                    <label for="address">Адрес</label>
                 </div>
             </div>
         </div>
         <div class="mt-3 row g-2">
-            <button type="submit" class="btn btn-primary" onclick="validateForm()">Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ</button>
-            <button type="button" class="btn btn-secondary" onclick="window.history.back()">РќР°Р·Р°Рґ</button>
+            <button type="submit" class="btn btn-primary" onclick="validateForm()">Зарегистрироваться</button>
+            <button type="button" class="btn btn-secondary" onclick="window.history.back()">Назад</button>
         </div>
     </form>
 </div>

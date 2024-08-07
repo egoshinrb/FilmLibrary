@@ -24,4 +24,9 @@ public interface SecurityConstants {
             "/login",
             "/users/registration",
             "/users/remember-password/");
+
+    List<String> USERS_REST_WHITE_LIST = List.of(
+            "/login",
+            "/users/registration",
+            "/users/remember-password/");
 }

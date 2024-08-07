@@ -3,8 +3,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Р’СЃРµ СЂРµР¶РёСЃСЃРµСЂС‹ С„РёР»СЊРјРѕС‚РµРєРё</title>
+    <meta charset="cp1251"/>
+    <title>Все режиссеры фильмотеки</title>
     <style>
         .no-films {
             color: red;
@@ -13,14 +13,14 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <h1>Р’СЃРµ СЂРµР¶РёСЃСЃРµСЂС‹ С„РёР»СЊРјРѕС‚РµРєРё</h1>
+    <h1>Все режиссеры фильмотеки</h1>
     <div class="row">
         <div class="col">
             <a href="directors/add"
                class="btn btn-secondary"
                role="button"
                style="float: right"
-               aria-disabled="true">Р”РѕР±Р°РІРёС‚СЊ СЂРµР¶РёСЃСЃРµСЂР°
+               aria-disabled="true">Добавить режиссера
             </a>
         </div>
     </div>
@@ -31,7 +31,7 @@
                class="btn btn-secondary"
                role="button"
                style="float: right"
-               aria-disabled="true">Р”РѕР±Р°РІРёС‚СЊ С„РёР»СЊРј Рє СЂРµР¶РёСЃСЃРµСЂСѓ
+               aria-disabled="true">Добавить фильм к режиссеру
             </a>
         </div>
     </div>
@@ -39,9 +39,9 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Р¤РРћ</th>
-            <th scope="col">Р РµР№С‚РёРЅРі</th>
-            <th scope="col">РЎРїРёСЃРѕРє С„РёР»СЊРјРѕРІ</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">Рейтинг</th>
+            <th scope="col">Список фильмов</th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -50,7 +50,7 @@
             <td th:text="${director.getDirectorsFio()}"></td>
             <td th:text="${director.getPosition()}"></td>
             <td th:classappend="${director.getFilmsIds().isEmpty()} ? 'no-films'"
-                th:text="${director.getFilmsIds().isEmpty()} ? 'Р¤РёР»СЊРј РЅРµ СѓРєР°Р·Р°РЅ' : ${DirectorsAndFilms.get(director)}"></td>
+                th:text="${director.getFilmsIds().isEmpty()} ? 'Фильм не указан' : ${DirectorsAndFilms.get(director)}"></td>
         </tr>
         </tbody>
     </table>

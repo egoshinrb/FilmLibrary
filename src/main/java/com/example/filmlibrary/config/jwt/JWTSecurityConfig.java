@@ -1,6 +1,6 @@
-//package com.jpc16tuesday.springlibraryproject.library.config.jwt;
+//package com.example.filmlibrary.config.jwt;
 //
-//import com.jpc16tuesday.springlibraryproject.library.service.userdetails.CustomUserDetailsService;
+//import com.example.filmlibrary.service.userdetails.CustomUserDetailsService;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.authentication.AuthenticationManager;
@@ -13,10 +13,10 @@
 //import org.springframework.security.web.SecurityFilterChain;
 //import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 //
-//import static com.jpc16tuesday.springlibraryproject.library.constants.SecurityConstants.RESOURCES_WHITE_LIST;
-//import static com.jpc16tuesday.springlibraryproject.library.constants.SecurityConstants.USERS_REST_WHITE_LIST;
-//import static com.jpc16tuesday.springlibraryproject.library.constants.UserRolesConstants.ADMIN;
-//import static com.jpc16tuesday.springlibraryproject.library.constants.UserRolesConstants.USER;
+//import static com.example.filmlibrary.constants.SecurityConstants.RESOURCES_WHITE_LIST;
+//import static com.example.filmlibrary.constants.SecurityConstants.USERS_REST_WHITE_LIST;
+//import static com.example.filmlibrary.constants.UserRolesConstants.ADMIN;
+//import static com.example.filmlibrary.constants.UserRolesConstants.USER;
 //
 //@Configuration
 //@EnableWebSecurity
@@ -33,7 +33,7 @@
 //        this.jwtTokenFilter = jwtTokenFilter;
 //    }
 //
-
+//
 //    @Bean
 //    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 //        httpSecurity

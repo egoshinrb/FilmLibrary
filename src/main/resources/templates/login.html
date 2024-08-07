@@ -1,45 +1,44 @@
-<!--РЎС‚СЂР°РЅРёС†Р° Р°РІС‚РѕСЂРёР·Р°С†РёРё-->
+<!--Страница авторизации-->
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="https://www.thymeleaf.org"
       layout:decorate="~{layout}"
       lang="en">
 <head>
-    <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Р’С…РѕРґ РІ РћРЅР»Р°Р№РЅ Р‘РёР±Р»РёРѕС‚РµРєСѓ</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=cp1251"/>
+    <title>Вход в Фильмотеку</title>
 </head>
 <body>
 <div layout:fragment="content" class="container-fluid mt-5">
     <form method="POST" th:action="@{/login}">
         <div th:if="${param.error}">
             <div class="alert alert-danger">
-                <p style="float: none">РќРµРІРµСЂРЅС‹Р№ Р»РѕРіРёРЅ/РїР°СЂРѕР»СЊ</p>
+                <p style="float: none">Неверный логин/пароль</p>
             </div>
         </div>
         <div class="form-group col-md-3 offset-md-4 m-auto">
-            <p class="h2" style="text-align:center">Р’С…РѕРґ РІ С„РёР»СЊРјРѕС‚РµРєСѓ</p>
+            <p class="h2" style="text-align:center">Вход в Фильмотеку</p>
         </div>
         <div class="form-group col-md-2 offset-md-4 m-auto">
             <input name="username" type="text" class="form-control" id="exampleInputUsername"
-                   placeholder="РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ"
+                   placeholder="Имя пользователя"
                    aria-describedby="usernameHelp"/>
             <label for="exampleInputUsername"></label>
-            <small id="usernameHelp" class="form-text text-muted">Р’РІРµРґРёС‚Рµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</small>
+            <small id="usernameHelp" class="form-text text-muted">Введите имя пользователя</small>
         </div>
         <div class="form-group col-md-2 offset-md-4 m-auto">
             <input name="password" type="password" class="form-control" id="exampleInputPassword"
-                   placeholder="РџР°СЂРѕР»СЊ">
+                   placeholder="Пароль">
             <label for="exampleInputPassword"></label>
-            <small id="passwordHelp" class="form-text text-muted">Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ</small>
+            <small id="passwordHelp" class="form-text text-muted">Введите пароль</small>
         </div>
         <div class="form-group col-md-3 offset-md-4 m-auto">
-            <button type="submit" class="btn btn-success offset-md-5">Р’РѕР№С‚Рё</button>
+            <button type="submit" class="btn btn-success offset-md-5">Войти</button>
             <div class="mt-1">
-                <a class="offset-md-3 text-link" href="/users/registration">Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ</a>
-                <a class="offset-md-3 text-link" href="/users/remember-password">Р—Р°Р±С‹Р»Рё РїР°СЂРѕР»СЊ?</a>
+                <a class="offset-md-3 text-link" href="/users/registration">Зарегистрироваться</a>
+                <a class="offset-md-3 text-link" href="/users/remember-password">Забыли пароль?</a>
             </div>
         </div>
     </form>

@@ -3,24 +3,24 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Р”РѕР±Р°РІРёС‚СЊ СЂРµР¶РёСЃСЃРµСЂР°</title>
+    <meta charset="cp1251"/>
+    <title>Добавить режиссера</title>
 </head>
 <body>
 <div layout:fragment="content">
-    <h3 class="mt-3 mb-3">Р”РѕР±Р°РІРёС‚СЊ СЂРµР¶РёСЃСЃРµСЂР°</h3>
+    <h3 class="mt-3 mb-3">Добавить режиссера</h3>
     <form style="max-width: 50vw" method="POST" th:action="@{/directors/add}" th:object="${directorsForm}">
         <div class="mb-3">
-            <label for="title" class="form-label">Р¤РРћ СЂРµР¶РёСЃСЃРµСЂР°</label>
-            <!--            РќР°Р·РІР°РЅРёРµ РїРѕР»СЏ РёРЅРїСѓС‚Р° РґРѕР»Р¶РЅРѕ СЃС‚СЂРѕРіРѕ СЃРѕРѕС‚РІРµС‚СЃС‚РІРѕРІР°С‚СЊ РЅР°Р·РІР°РЅРёСЋ РїРѕР»СЏ РєР»Р°СЃСЃР° (DTO)-->
+            <label for="title" class="form-label">ФИО режиссера</label>
+            <!--            Название поля инпута должно строго соответствовать названию поля класса (DTO)-->
             <input name="directorsFio" type="text" class="form-control" id="title">
         </div>
         <div class="mb-3">
-            <label for="position" class="form-label">Р РµР№С‚РёРЅРі</label>
+            <label for="position" class="form-label">Рейтинг</label>
             <input name="position" type="number" class="form-control" id="position">
         </div>
-        <button type="submit" class="btn btn-primary">Р”РѕР±Р°РІРёС‚СЊ</button>
-        <button type="button" class="btn btn-secondary" onclick="window.history.back()">РќР°Р·Р°Рґ</button>
+        <button type="submit" class="btn btn-primary">Добавить</button>
+        <button type="button" class="btn btn-secondary" onclick="window.history.back()">Назад</button>
     </form>
 </div>
 </body>
