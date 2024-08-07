@@ -1,10 +1,12 @@
+<head>
+  <meta charset="cp1251">
+</head>
 <div xmlns:th="http://www.thymeleaf.org"
      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
      th:fragment="header">
-  <meta charset="cp1251">
   <nav class="navbar navbar-expand-lg" style="background-color: #99CCFF">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/" style="color: #000099" >Р¤РёР»СЊРјРѕС‚РµРєР°</a>
+      <a class="navbar-brand" href="/" style="color: #000099" >Фильмотека</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
               aria-expanded="false" aria-label="Toggle navigation">
@@ -13,26 +15,26 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-link">
-            <a class="nav-link active" aria-current="page" href="/films">Р¤РёР»СЊРјС‹</a>
+            <a class="nav-link active" aria-current="page" href="/films">Фильмы</a>
           </li>
           <li class="nav-link">
-            <a class="nav-link active" aria-current="page" href="/directors">Р РµР¶РёСЃСЃРµСЂС‹</a>
+            <a class="nav-link active" aria-current="page" href="/directors">Режиссеры</a>
           </li>
           <li sec:authorize="isAuthenticated() && (hasRole('USER'))" class="nav-link">
-            <a class="nav-link active" aria-current="page" href="/my/films">РњРѕРё С„РёР»СЊРјС‹</a>
+            <a class="nav-link active" aria-current="page" href="/my/films">Мои фильмы</a>
           </li>
           <li sec:authorize="isAuthenticated() && (hasRole('ADMIN') || hasRole('LIBRARIAN'))" class="nav-link">
-            <a class="nav-link active" aria-current="page" href="/users/list">РџРѕР»СЊР·РѕРІР°С‚РµР»Рё</a>
+            <a class="nav-link active" aria-current="page" href="/users/list">Пользователи</a>
           </li>
         </ul>
         <div sec:authorize="isAuthenticated() && !hasRole('ADMIN')">
-          <a class="nav-link active" style="float: right" th:href="'/users/profile/' + ${#authentication.getPrincipal().getUserId()}">РџСЂРѕС„РёР»СЊ</a>
+          <a class="nav-link active" style="float: right" th:href="'/users/profile/' + ${#authentication.getPrincipal().getUserId()}">Профиль</a>
         </div>
           <form class="d-flex" sec:authorize="!isAuthenticated()">
-            <a href="/login" class="btn btn-primary" role="button" aria-disabled="true">Р’РѕР№С‚Рё</a>
+            <a href="/login" class="btn btn-primary" role="button" aria-disabled="true">Войти</a>
           </form>
           <form class="d-flex" sec:authorize="isAuthenticated()">
-            <a href="/logout" class="btn btn-primary" role="button" aria-disabled="true">Р’С‹Р№С‚Рё</a>
+            <a href="/logout" class="btn btn-primary" role="button" aria-disabled="true">Выйти</a>
         </form>
       </div>
     </div>
